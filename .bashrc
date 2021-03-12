@@ -142,8 +142,10 @@ ex ()
 
 # i change the color of the name on the screen
 GREEN="\[$(tput setaf 2)\]"
+VIOLET="\[$(tput setaf 5)\]"
 RED="\[$(tput setaf 1)\]"
 YELLOW="\[$(tput setaf 3)\]"
 BLUE="\[$(tput setaf 4)\]"
 RESET="\[$(tput sgr0)\]"
-PS1="${YELLOW}\u${RED}@${BLUE}\h\W${GREEN}$ "
+#PS1="${VIOLET}[${YELLOW}\u${RED}@${BLUE}\h-${GREEN}\W${VIOLET}]$ "
+PS1="${VIOLET}[${YELLOW}\u${RED}:${BLUE}\w${VIOLET}]$ ${GREEN}"
