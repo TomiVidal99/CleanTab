@@ -1,31 +1,18 @@
 interface Style {
-    fs: string,
-    ff: string,
-    fst: string,
-    color: string
+    fs?: string,
+    ff?: string,
+    fst?: string,
+    color?: string,
+    background?: string
 }
 
 interface Config {
     styles: {
         time: Style,
-        date: {
-            fs: string,
-            ff: string,
-            fst: string,
-            color: string
-        },
-        description: {
-            fs: string,
-            ff: string,
-            fst: string,
-            color: string
-        },
-        weather: {
-            fs: string,
-            ff: string,
-            fst: string,
-            color: string
-        }
+        date: Style,
+        description: Style,
+        weather: Style,
+        background: Style
     }
 }
 

@@ -13,6 +13,15 @@ import {Config} from './../types/Config';
 export const useConfig = (): [Config | null, (arg0: Config) => void] => {
     const [config, setConfig] = useState<Config | null>(null);
 
+    //const getValue = (value: string): string | null => {
+        //const val = window.localStorage.getItem(value);
+        //if (val) {
+            //return val;
+        //} else {
+            //return null;
+        //}
+    //}
+
     //updates the config
     const handleNewConfig = (newConfig: Config): void => {
 

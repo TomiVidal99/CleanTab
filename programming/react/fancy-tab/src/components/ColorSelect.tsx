@@ -1,10 +1,5 @@
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ MODULES ~~~~~*/
 import {ReactElement} from 'react';
-import {Style} from '../types/Config';
-/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  ~~~~~*/
-
-/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ASSETS ~~~~~*/
-import './../styles/Background.css';
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  ~~~~~*/
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ COMPONENTS ~~~~~*/
@@ -12,14 +7,26 @@ import './../styles/Background.css';
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ TYPES ~~~~~*/
 interface ComponentProps {
-    style: Style
+    label: string,
+    name: string,
+    description?: ReactElement
 }
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  ~~~~~*/
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ FUNCTION ~~~~~*/
-export const Background = ({style}: ComponentProps): ReactElement => {
+export const ColorSelect = ({label, name, description}: ComponentProps): ReactElement => {
     return(
-        <div style={style} className="background">
+        <div className="settings__input_container">
+            <label className="input_container__label color_select" htmlFor={name}>
+                {label}
+                <input 
+                    className="color_input"
+                    type="color"
+                    name={name}
+                    id={name}
+                />
+            </label>
+            {description ? <div className="input__container_description">{description}</div> : null}
         </div>
     );
 }

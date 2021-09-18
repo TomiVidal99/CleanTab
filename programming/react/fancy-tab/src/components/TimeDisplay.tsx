@@ -4,7 +4,7 @@ import {useWeather} from './../hooks/useWeather';
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  ~~~~~*/
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ASSETS ~~~~~*/
-import './../styles/Weather.css';
+import './../styles/TimeDisplay.css';
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  ~~~~~*/
 
 
@@ -32,14 +32,14 @@ export const TimeDisplay = ({locale, dateStyle, timeStyle, descriptionStyle}: Pr
     }, [time]);
 
     return(
-        <div className="timeDisplay">
-            <time style={timeStyle} className="timeDisplay__time">
+        <div className="time_display">
+            <time style={timeStyle} className="time_display__time">
                 {time.toLocaleTimeString(locale)}
             </time>
-            <time style={dateStyle} className="timeDisplay__date">
+            <time style={dateStyle} className="time_display__date">
                 {time.toLocaleDateString(locale)}
             </time>
-            <p style={descriptionStyle} className="timeDisplay__description">{weather ? 'description' : ''}</p>
+            <p style={descriptionStyle} className="time_display__description">{weather ? 'description' : ''}</p>
         </div>
     );
 }

@@ -12,17 +12,21 @@ import './../styles/Weather.css';
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ TYPES ~~~~~*/
 import {Style} from './../types/Config';
 interface Props {
-    weatherStyle: Style
+    style: Style
 }
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  ~~~~~*/
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ FUNCTION ~~~~~*/
-export const Weather = ({weatherStyle}: Props): ReactElement => {
+export const Weather = ({style}: Props): ReactElement => {
+
     return(
         <div className="weather">
-            <h4 className="weather__title">Weather</h4>
-            <label style={weatherStyle} htmlFor="temperature" className="weather__temperture">Temp: </label>
-            <label style={weatherStyle} htmlFor="humidity" className="weather__humidity">Hum: </label>
+            <div className="weather__temperature">
+                🌡 Temp <span className="temperature" id="temperature"></span>
+            </div>
+            <div className="weather__humidity">
+                 💧 Hum<span className="humidity" id="humidity"></span>
+            </div>
         </div>
     );
 }

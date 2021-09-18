@@ -1,10 +1,6 @@
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ MODULES ~~~~~*/
 import {ReactElement} from 'react';
-import {Style} from '../types/Config';
-/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  ~~~~~*/
-
-/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ASSETS ~~~~~*/
-import './../styles/Background.css';
+import {Check} from './Check';
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  ~~~~~*/
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ COMPONENTS ~~~~~*/
@@ -12,14 +8,24 @@ import './../styles/Background.css';
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ TYPES ~~~~~*/
 interface ComponentProps {
-    style: Style
+    label: string,
+    name: string,
+    description?: ReactElement
 }
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  ~~~~~*/
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ FUNCTION ~~~~~*/
-export const Background = ({style}: ComponentProps): ReactElement => {
+export const CheckSelect = ({label, name, description}: ComponentProps): ReactElement => {
     return(
-        <div style={style} className="background">
+        <div className="settings__input_container">
+            <label
+                className="input_container__label check_select"
+                htmlFor={name}
+            >
+                {label}
+                <Check name={name+'Checkbox'} />
+            </label>
+            {description ? <div className="input__container_description">{description}</div> : null}
         </div>
     );
 }

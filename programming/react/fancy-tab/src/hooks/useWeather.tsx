@@ -21,7 +21,7 @@ export const useWeather = (initialState: object | null) => {
             setWeather(response);
         }).catch( (err) => {throw err} );
 
-    });
+    }, []);
 
     return([weather]);
 }

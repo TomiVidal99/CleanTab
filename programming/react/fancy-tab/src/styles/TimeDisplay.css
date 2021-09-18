@@ -1,0 +1,39 @@
+.time_display {
+    position: absolute;
+    width: 60vw;
+    height: 40vh;
+    top: 30vh;
+    left: 20vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ TIME ~~~~~*/
+.time_display__time {
+    font-size: clamp(1.5rem, 20vmin, 12rem); 
+    color: black;
+    font-family: 'Chivo', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.time_display__time::after {
+    content: 'hs';
+    font-style: italic;
+    font-size: clamp(1.2125rem, 7vmin, 6rem); 
+    color: black;
+}
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ DATE ~~~~~*/
+.time_display__date {
+    font-size: clamp(1.3rem, 8vmin, 6rem); 
+    font-style: italic;
+    color: black;
+    font-family: 'Chivo', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ DESCRIPTION ~~~~~*/
+.time_display__description {
+    font-size: clamp(1.125rem, 5vmin, 5rem); 
+    color: black;
+    font-family: 'Chivo', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}

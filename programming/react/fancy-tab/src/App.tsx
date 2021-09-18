@@ -21,14 +21,12 @@ import {useConfig} from './hooks/useConfig';
 const App = (): ReactElement => {
     const [userConfig, setUserConfig] = useConfig();
 
-
     return (
     <div className="app">
-        <h1>HELLO WORLD</h1>
         <TimeDisplay timeStyle={userConfig ? userConfig.styles.time : defaultStyles.time} dateStyle={userConfig ? userConfig.styles.date : defaultStyles.date} descriptionStyle={userConfig ? userConfig.styles.description : defaultStyles.description} locale="es-AR" />
-        <Weather weatherStyle={userConfig ? userConfig.styles.weather : defaultStyles.weather} />
-        <Configuration/>
-        <Background/>
+        <Weather style={userConfig ? userConfig.styles.weather : defaultStyles.weather} />
+        <Configuration/> 
+        <Background style={userConfig ? userConfig.styles.background : defaultStyles.background} />
     </div>
   );
 }
@@ -38,25 +36,28 @@ const defaultStyles = {
         fs: '40px',
         ff: 'Arial',
         fst: 'italic',
-        color: 'red'
+        color: 'black'
     },
     date: {
         fs: '20px',
         ff: 'Arial',
         fst: 'italic',
-        color: 'limegreen'
+        color: 'dimgray'
     },
     description: {
         fs: '14px',
         ff: 'Arial',
         fst: 'italic',
-        color: 'blue'
+        color: 'gray'
     },
     weather: {
         fs: '14px',
         ff: 'Arial',
         fst: 'italic',
-        color: 'blue'
+        color: 'gray'
+    },
+    background: {
+        background: 'lightgray'
     }
 }
 
