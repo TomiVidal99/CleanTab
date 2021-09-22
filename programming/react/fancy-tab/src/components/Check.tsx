@@ -1,5 +1,7 @@
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ MODULES ~~~~~*/
 import {ChangeEvent, ReactElement, useEffect, useState} from 'react';
+import {Config, generalConfiguration, Style} from '../types/Config';
+import {SetConfigValue} from './ConfigContext';
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  ~~~~~*/
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ COMPONENTS ~~~~~*/
@@ -7,36 +9,46 @@ import {ChangeEvent, ReactElement, useEffect, useState} from 'react';
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ TYPES ~~~~~*/
 interface ComponentProps {
-    name: string,
+    name: keyof Style | keyof generalConfiguration,
+    section: keyof Config,
+    config: Config,
+    setConfigValue: SetConfigValue
 }
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  ~~~~~*/
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ FUNCTION ~~~~~*/
-export const Check = ({name}: ComponentProps): ReactElement => {
-    const [inputValue, setInputValue] = useState(false);
+export const Check = ({name, section, config, setConfigValue}: ComponentProps): ReactElement => {
+    const [inputValue, setInputValue] = useState<boolean>(false);
 
-    //updates the change of the input
+    // updates the local and global state and saves the new data into the localstorage
     const handleInputChange = (element: ChangeEvent<HTMLInputElement>): void => {
         const newValue = element.target.checked;
+
+        // update the local state
         setInputValue(newValue);
-        handleCacheData(newValue);
+
+        // updates the global state and store the new value into the localstorage
+        setConfigValue(section, name, newValue);
+
     }
 
-    // loads the cached data
+    //updates the value on init and when the config changes
     useEffect(() => {
-        const cachedData = window.localStorage.getItem(name);
-        if (cachedData) {
-            setInputValue(cachedData === "true" ? true : false);
-        }
-    }, [name]);
-
-    // saves data into window.localStorage
-    const handleCacheData = (newValue: boolean): void => {
-        window.localStorage.setItem(name, (newValue).toString());
-    }
+        console.log(`Section: ${section}, name: ${name}`);
+        const cachedData = config[section][name];
+        if (typeof(cachedData) !== 'boolean') return console.log(`ERROR: expected boolean. got ${typeof(cachedData)}. Check.tsx`);
+        setInputValue(cachedData);
+    }, [config]);
 
     return(
-        <input className="checkbox" onChange={handleInputChange} checked={inputValue} type="checkbox" name={name} id={name} />
+        <input
+            className="checkbox"
+            onChange={handleInputChange}
+            checked={inputValue}
+            type="checkbox"
+            name={name as string}
+            id={name as string}
+        />
     );
 }
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  ~~~~~*/

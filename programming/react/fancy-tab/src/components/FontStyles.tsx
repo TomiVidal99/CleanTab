@@ -1,5 +1,6 @@
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ MODULES ~~~~~*/
-import {ReactElement} from 'react';
+import {ReactElement, useContext} from 'react';
+import ConfigContext from './ConfigContext';
 import {Select} from './Select';
 import {Settings} from './Settings';
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  ~~~~~*/
@@ -12,47 +13,60 @@ import {Settings} from './Settings';
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ FUNCTION ~~~~~*/
 export const FontStyles = () :ReactElement => {
+    const {config, setConfigValue} = useContext(ConfigContext);
     return(
         <Settings title="Fonts Styles">
             <Select
-                key="timeFamilies"
+                key="timeStyles"
                 label="Time"
-                name="timeFamilies"
+                section="time"
+                name="--fst"
                 options={[
                     'normal',
                     'italic',
                     'bold'
                 ]}
+                config={config}
+                setConfigValue={setConfigValue}
             />
             <Select
-                key="dateFamilies"
+                key="dateStyles"
                 label="Date"
-                name="dateFamilies"
+                section="date"
+                name="--fst"
                 options={[
                     'normal',
                     'italic',
                     'bold'
                 ]}
+                config={config}
+                setConfigValue={setConfigValue}
             />
             <Select
-                key="descriptionFamilies"
+                key="descriptionStyles"
                 label="Description"
-                name="descriptionFamilies"
+                section="description"
+                name="--fst"
                 options={[
                     'normal',
                     'italic',
                     'bold'
                 ]}
+                config={config}
+                setConfigValue={setConfigValue}
             />
             <Select
-                key="weatherFamilies"
+                key="weatherStyles"
                 label="Weather"
-                name="weatherFamilies"
+                section="weather"
+                name="--fst"
                 options={[
                     'normal',
                     'italic',
                     'bold'
                 ]}
+                config={config}
+                setConfigValue={setConfigValue}
             />
         </Settings>
     );

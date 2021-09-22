@@ -49,9 +49,9 @@
     padding: 2em 1em;
     border-radius: 2px;
     transition: 
-        transform .5s ease-in-out,
-        width .4s ease-in-out,
-        height .4s ease-in-out;
+        transform .5s cubic-bezier(0.15, 0.86, 0.81, 0.98),
+        width .4s cubic-bezier(0, 1.29, 0.58, 1),
+        height .4s cubic-bezier(0, 1.29, 0.58, 1);
     top: 10vh;
     right: 10vw;
     transform: translate(20vw, -20vh);
@@ -151,8 +151,8 @@
 .label__input,
 .label__select {
     margin-left: 1em;
-    font-size: var(--fs-settings);
-    font-family: var(--ff-settings);
+    font-size: var(--fs);
+    font-family: var(--ff);
     border: none;
     background-color: #e8e7e7;
 }

@@ -1,22 +1,33 @@
-interface Style {
-    fs?: string,
-    ff?: string,
-    fst?: string,
-    color?: string,
-    background?: string
+export interface Config {
+    [key: string]: Style | generalConfiguration,
+    time: Style,
+    date: Style,
+    description: Style,
+    weather: Style,
+    background: Style,
+    general: generalConfiguration
 }
 
-interface Config {
-    styles: {
-        time: Style,
-        date: Style,
-        description: Style,
-        weather: Style,
-        background: Style
-    }
+export interface Style {
+    [key: string]: string | undefined,
+    '--fs'?: string,
+    '--fw'?: string,
+    '--fst'?: string,
+    '--ff'?: string,
+    '--fc'?: string,
+    '--bg'?: string,
 }
 
-export type {
-    Config,
-    Style
+export interface generalConfiguration {
+    [key: string]: string | boolean,
+    locale: string,
+    key: string,
+    query: string,
+    queryCheckbox: boolean,
+    background: string,
+    location: string,
+    locationCheckbox: boolean,
+    weatherDescriptionCheckbox: boolean,
+    dateFormat: string,
+    dateFormatCheckbox: boolean,
 }

@@ -1,9 +1,10 @@
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ MODULES ~~~~~*/
-import {Fragment, ReactElement} from 'react';
+import {Fragment, ReactElement, useContext} from 'react';
 import {InputData} from './InputData';
 import {Select} from './Select';
 import {Settings} from './Settings';
 import {CheckSelect} from './CheckSelect';
+import ConfigContext from './ConfigContext';
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  ~~~~~*/
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ COMPONENTS ~~~~~*/
@@ -13,20 +14,28 @@ import {CheckSelect} from './CheckSelect';
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  ~~~~~*/
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ FUNCTION ~~~~~*/
+const section = 'general';
 export const GeneralSettings = () :ReactElement => {
+    const {config, setConfigValue} = useContext(ConfigContext);
     return(
         <Settings title="General Settings">
             <Select
                 key="language"
                 label="Language"
+                section={section}
                 options={["en-US", "es-AR"]}
-                name="language"
+                name="locale"
+                config={config}
+                setConfigValue={setConfigValue}
             />
             <InputData 
                 key="apiKey"
                 label="API KEY"
-                name="apiKey"
+                name="key"
                 placeholder="Get your api key and paste it here"
+                section={section}
+                config={config}
+                setConfigValue={setConfigValue}
                 description={
                     <Fragment>
                         <Fragment>Get your key from</Fragment>
@@ -43,33 +52,47 @@ export const GeneralSettings = () :ReactElement => {
             />
             <InputData
                 key="apiQuery"
+                section={section}
                 label="Background query"
-                name="apiQuery"
+                name="query"
                 placeholder="Search the picture that you want as background"
                 checkbox={true}
                 description={<Fragment>Get dynamic background images by entering one or more keywords</Fragment>}
+                config={config}
+                setConfigValue={setConfigValue}
             />
             <InputData
                 key="backgroundColor"
                 label="Background color"
-                name="backgroundColor"
+                name="background"
+                section={section}
                 placeholder="Enter a color, i.e: limegreen, or #ddd"
+                config={config}
+                setConfigValue={setConfigValue}
             />
             <InputData
                 key="weatherLocation"
                 label="Weather Location"
-                name="weatherLocation"
+                name="location"
                 placeholder="Enter a location to get weather data"
                 description={<Fragment>We don't want to track peoples data, so if you want to get weather information enter your location or somewhere close to you, else no weather data won't be showed</Fragment>}
                 checkbox={true}
+                config={config}
+                setConfigValue={setConfigValue}
+                section={section}
             />
             <CheckSelect
                 label="Weather description"
-                name="weatherActive"
+                name="weatherDescriptionCheckbox"
+                config={config}
+                setConfigValue={setConfigValue}
+                section={section}
+                checkbox={true}
             />
             <Select
                 key="dateFormat"
                 label="Date"
+                section="general"
                 options={[
                     "automatic",
                     "dd/mm/yy",
@@ -78,6 +101,8 @@ export const GeneralSettings = () :ReactElement => {
                 ]}
                 name="dateFormat"
                 checkbox={true}
+                config={config}
+                setConfigValue={setConfigValue}
             />
         </Settings>
     );

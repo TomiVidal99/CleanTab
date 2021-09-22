@@ -40,20 +40,6 @@
     /*other global stylings*/
 
 
-    /*variables set by the user that are stored in the window.localStorage*/
-
-    /*TIME*/
-    --time-fs: 20vmin;
-    --time-ff: 'Chivo';
-    --time-fw: normal;
-    --time-fc: black;
-
-    /*DATE*/
-    --date-fs: 20vmin;
-    --date-ff: 'Chivo';
-    --date-fw: normal;
-    --date-fc: black;
-
 }
 
 

@@ -1,6 +1,5 @@
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ MODULES ~~~~~*/
 import {ChangeEvent, ReactElement, useEffect, useState} from 'react';
-import Description from '../types/Descriptions';
 import {Check} from './Check';
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  ~~~~~*/
 
@@ -8,47 +7,50 @@ import {Check} from './Check';
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  ~~~~~*/
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ TYPES ~~~~~*/
+import {Config, generalConfiguration, Style} from '../types/Config';
+import {SetConfigValue} from './ConfigContext';
 interface ComponentProps {
     label: string,
     options: string[],
-    name: string,
+    name: keyof Style | keyof generalConfiguration,
+    section: keyof Config,
     description?: ReactElement,
-    checkbox?: boolean | null
+    checkbox?: boolean | null,
+    config: Config,
+    setConfigValue: SetConfigValue
 }
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  ~~~~~*/
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ FUNCTION ~~~~~*/
-export const Select = ({label, options, name, checkbox, description}: ComponentProps): ReactElement => {
-    const [inputValue, setInputValue] = useState('');
+export const Select = ({label, section, options, name, checkbox, description, config, setConfigValue}: ComponentProps): ReactElement => {
+    const [inputValue, setInputValue] = useState<string>('');
 
     //updates the change of the input
     const handleInputChange = (element: ChangeEvent<HTMLSelectElement>): void => {
         const newValue = element.target.value;
+        // updates the local state
         setInputValue(newValue);
+        // updates the stored data and the state of config
+        setConfigValue(section, name, newValue);
     }
 
     // loads the cached data
     useEffect(() => {
-        const cachedData = window.localStorage.getItem(name);
-        if (cachedData) {
-            setInputValue(cachedData);
-        }
-    }, [name]);
-
-    // saves data into window.localStorage
-    const handleCacheData = (): void => {
-        window.localStorage.setItem(name, inputValue);
-    }
+        const cachedData = config[section as string][name as string];
+        //console.log('cachedData: ', cachedData);
+        if (typeof(cachedData) !== 'string') return console.log('ERROR: got boolean or undefined. Expected string or undefined'); 
+        //console.log(`updated. data: ${cachedData}, section: ${section}, name: ${name}`);
+        setInputValue(cachedData);
+    }, [config]);
 
     return(
         <div className="settings__input_container" >
-            <label className="input_container__label select" htmlFor={name}>
+            <label className="input_container__label select" htmlFor={name as string} >
                 {label}
                 <select 
-                    name={name}
-                    id={name}
+                    name={name as string}
+                    id={name as string}
                     className="label__select"
-                    onBlur={handleCacheData}
                     onChange={handleInputChange}
                     value={inputValue}
                 >
@@ -56,7 +58,7 @@ export const Select = ({label, options, name, checkbox, description}: ComponentP
                         return(<option key={option+name} className="select__option" value={option}>{option}</option>)
                     } )}
                 </select>
-                {checkbox ? <Check name={name+"Checkbox"} /> : null}
+                {checkbox ? <Check name={name+"Checkbox"} section={section} config={config} setConfigValue={setConfigValue} /> : null}
             </label>
             {description ? <div className="input__container_description">description</div> : null}
         </div>

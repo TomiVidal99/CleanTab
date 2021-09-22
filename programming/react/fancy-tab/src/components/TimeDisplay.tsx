@@ -1,27 +1,20 @@
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ MODULES ~~~~~*/
-import {ReactElement, useEffect, useState} from 'react';
+import {CSSProperties, ReactElement, useContext, useEffect, useState} from 'react';
+import {useConfig} from '../hooks/useConfig';
 import {useWeather} from './../hooks/useWeather';
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  ~~~~~*/
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ASSETS ~~~~~*/
 import './../styles/TimeDisplay.css';
-/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  ~~~~~*/
-
-
-/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ TYPES ~~~~~*/
-import {Style} from './../types/Config';
-interface Props {
-    locale: string,
-    timeStyle: Style,
-    dateStyle: Style,
-    descriptionStyle: Style
-}
+import ConfigContext from './ConfigContext';
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  ~~~~~*/
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ FUNCTION ~~~~~*/
-export const TimeDisplay = ({locale, dateStyle, timeStyle, descriptionStyle}: Props): ReactElement => {
+export const TimeDisplay = (): ReactElement => {
+    // TODO: create a context for the weather data and a hook for the weather request
+
     const [time, setTime] = useState(new Date());
-    const [weather] = useWeather(null);
+    const {config} = useContext(ConfigContext);
 
     //update the time every second
     useEffect( () => {
@@ -33,13 +26,22 @@ export const TimeDisplay = ({locale, dateStyle, timeStyle, descriptionStyle}: Pr
 
     return(
         <div className="time_display">
-            <time style={timeStyle} className="time_display__time">
-                {time.toLocaleTimeString(locale)}
+
+            {/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ TIME ~~~~~*/}
+            <time style={config.time as CSSProperties} className="time_display__time">
+                {time.toLocaleTimeString(config.general.locale)}
             </time>
-            <time style={dateStyle} className="time_display__date">
-                {time.toLocaleDateString(locale)}
+
+            {/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ DATE~~~~~*/}
+            <time style={config.date as CSSProperties} className="time_display__date">
+                {time.toLocaleDateString(config.general.locale)}
             </time>
-            <p style={descriptionStyle} className="time_display__description">{weather ? 'description' : ''}</p>
+
+            {/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ WEATHER DESCRIPTION ~~~~~*/}
+            <p style={config.description as CSSProperties} className="time_display__description">
+                {/*weather ? 'description' : ''*/}
+                weather description
+            </p>
         </div>
     );
 }
