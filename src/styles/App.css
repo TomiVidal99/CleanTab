@@ -1,0 +1,89 @@
+:root {
+
+    /*main palette*/
+    --palette-c1: #fff;
+    --palette-c2: #aaa;
+    --palette-c3: #fff;
+
+    /*custom colors*/
+    --cc1: #fff;
+    --cc2: #fff;
+    --cc3: #fff;
+
+    /*font sizes*/
+    --fs-p: 1rem;
+    --fs-h1: 3rem;
+    --fs-h2: 2.8125rem;
+    --fs-h3: 2.8rem;
+    --fs-h4: 2.5125rem;
+    --fs-h5: 2.3125rem;
+    --fs-h6: 1.125rem;
+
+    /*font families*/
+    --ff-p: 'Chivo', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    --ff-h1: 'Chivo', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    --ff-h2: 'Chivo', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    --ff-h3: 'Chivo', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    --ff-h4: 'Chivo', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    --ff-h5: 'Chivo', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    --ff-h6: 'Chivo', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+    /*font weights*/
+    --fw-p: 200;
+    --fw-h1: 300;
+    --fw-h2: 300;
+    --fw-h3: 300;
+    --fw-h4: 300;
+    --fw-h5: 300;
+    --fw-h6: 300;
+
+    /*other global stylings*/
+
+
+}
+
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ GENERAL STYLING ~~~~~*/
+/*common general styles*/
+*, *::before, *::after {box-sizing: border-box;}
+html {overflow: hidden;}
+body {margin: 0; padding: 0;}
+
+/*remove all the highlight when selects*/
+p, h1, h2, h3, h4, h5, h6, label, div {user-select: none;}
+
+/*remove the outlines when focused*/
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none;
+}
+
+/*just apply general styling to common tags*/
+p {font-size: var(--fs-p); font-family: var(--ff-p); font-weight: var(--fw-p);}
+h1 {font-size: var(--fs-h1); font-family: var(--ff-h1); font-weight: var(--fw-h1);}
+h2 {font-size: var(--fs-h2); font-family: var(--ff-h2); font-weight: var(--fw-h2);}
+h3 {font-size: var(--fs-h3); font-family: var(--ff-h3); font-weight: var(--fw-h3);}
+h4 {font-size: var(--fs-h4); font-family: var(--ff-h4); font-weight: var(--fw-h4);}
+h5 {font-size: var(--fs-h5); font-family: var(--ff-h5); font-weight: var(--fw-h5);}
+h6 {font-size: var(--fs-h6); font-family: var(--ff-h6); font-weight: var(--fw-h6);}
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ HELPER CLASSES ~~~~~*/
+.row {display: flex; flex-direction: row;}
+.column {display: flex; flex-direction: column;}
+.js-c {justify-self: center;}
+.js-l {justify-self: left;}
+.js-r {justify-self: right;}
+.jc-sb {justify-content: space-between;}
+.bolder {font-weight: bolder;}
+.italic {font-size: italic;}
+.w-100 {width: 100%;}
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ HEADER ~~~~~*/
+
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ MAIN ~~~~~*/
+
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ FOOTER ~~~~~*/

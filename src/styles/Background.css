@@ -1,0 +1,28 @@
+.background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    background: var(--bg, #dedede);
+    background-attachment: local;
+    background-position: center;
+    background-size: cover;
+}
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ PHOTOGRAPHER CARD ~~~~~*/
+.photographer_card {
+    position: absolute;
+    left: 2vw;
+    bottom: 2vh;
+    padding: .5em;
+    border-radius: 2px;
+    background: rgb(255 255 255 / .05);
+    backdrop-filter: blur(4px);
+}
+.photographer_card__link {
+    color: black;
+    text-decoration: none;
+    cursor: alias;
+}

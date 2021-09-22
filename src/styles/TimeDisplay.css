@@ -1,0 +1,44 @@
+.time_display {
+    position: absolute;
+    width: 100vw;
+    height: 40vh;
+    top: 30vh;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/*~~~~~~~~~~~~~~~~~~ helper class when the background transparent is set ~~~~~*/
+.bg-transparent {
+    background-color: rgb(255 255 255 / .05);
+    backdrop-filter: blur(10px);
+}
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ TIME ~~~~~*/
+.time_display__time {
+    font-size: clamp(1.5rem, var(--fs, 18vmin), 12rem); 
+    font-style: var(--fst, normal);
+    font-weight: var(--fw, 300);
+    color: var(--fc, black);
+    font-family: var(--ff, 'Chivo', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif);
+    text-align: center;
+    border-radius: 2px;
+}
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ DATE ~~~~~*/
+.time_display__date {
+    font-size: clamp(1.5rem, var(--fs, 10vmin), 12rem); 
+    font-style: var(--fst, normal);
+    font-weight: var(--fw, 300);
+    color: var(--fc, black);
+    font-family: var(--ff, 'Chivo', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif);
+}
+
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ DESCRIPTION ~~~~~*/
+.time_display__description {
+    font-size: clamp(1.125rem, var(--fs, 4vim), 5rem); 
+    color: var(--fc, black);
+    font-family: var(--ff, 'Chivo', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif);
+}
