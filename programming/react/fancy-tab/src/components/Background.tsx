@@ -1,5 +1,6 @@
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ MODULES ~~~~~*/
-import {CSSProperties, ReactElement, useContext, useEffect, useState} from 'react';
+import {CSSProperties, ReactElement, useContext} from 'react';
+import {BackgroundImage, useBackground} from '../hooks/useBackground';
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  ~~~~~*/
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ASSETS ~~~~~*/
@@ -7,37 +8,33 @@ import './../styles/Background.css';
 import ConfigContext from './ConfigContext';
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  ~~~~~*/
 
-/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ COMPONENTS ~~~~~*/
-/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  ~~~~~*/
-
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ TYPES ~~~~~*/
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  ~~~~~*/
 
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ COMPONENTS ~~~~~*/
+const photographerCard = (photo: BackgroundImage): ReactElement => {
+    return(
+        <div className="photographer_card">
+            <a className="photographer_card__link" rel="noreferrer" target="_blank" href={photo.photographerURL}>
+                With love by: {" " + photo.photographer}
+            </a>
+        </div>
+    )
+};
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  ~~~~~*/
+
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ FUNCTION ~~~~~*/
-const KEY_LENGTH = 56;
 export const Background = (): ReactElement => {
     const {config} = useContext(ConfigContext);
-    const [randomBackground, setRandomBackground] = useState<string | null>(null);
-
-    // retrieves array of backgrounds urls and sets a random one as the state
-    const getRandomBackground = (backgrounds: string[]): void => {
-
-        if (config.general.key.length !== KEY_LENGTH) return;
-
-        if (!config.general.queryCheckbox || config.general.query === '') {
-            //if the background has been set to not be display remove the current url from the state
-            if (randomBackground === null) return;
-            setRandomBackground(null);
-        }
-
-        //useBackground(config.general.query);
-
-    }
+    const randomBackground = useBackground(config.general.query, config.general.key);
 
     return(
         <div 
-            style={randomBackground ? randomBackground : (config.background as CSSProperties)}
+            style={randomBackground ? ({'backgroundImage': 'url('+randomBackground.photoURL+')'}) : (config.background as CSSProperties)}
             className="background">
+            {randomBackground ? (
+                config.general.queryCheckbox ? photographerCard(randomBackground) : null
+            ) : null}
         </div>
     );
 }

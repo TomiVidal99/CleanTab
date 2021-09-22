@@ -5,14 +5,14 @@ import {CSSProperties, ReactElement, useContext, useEffect, useState} from 'reac
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ASSETS ~~~~~*/
 import './../styles/TimeDisplay.css';
 import ConfigContext from './ConfigContext';
+import WeatherContext from './WeatherContext';
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  ~~~~~*/
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ FUNCTION ~~~~~*/
 export const TimeDisplay = (): ReactElement => {
-    // TODO: create a context for the weather data and a hook for the weather request
-
     const [time, setTime] = useState(new Date());
     const {config} = useContext(ConfigContext);
+    const weather = useContext(WeatherContext);
 
     //update the time every second
     useEffect( () => {
@@ -38,7 +38,7 @@ export const TimeDisplay = (): ReactElement => {
 
             {/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ WEATHER DESCRIPTION ~~~~~*/}
             <p style={config.description as CSSProperties} className="time_display__description">
-                {config.general.weatherDescriptionCheckbox ? 'Weather description' : null}
+                {config.general.weatherDescriptionCheckbox ? (weather ? weather.weather[0].description : null) : null}
             </p>
         </div>
     );

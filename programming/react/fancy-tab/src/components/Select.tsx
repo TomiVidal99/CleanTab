@@ -40,7 +40,14 @@ export const Select = ({label, section, options, name, checkbox, description, co
         //console.log('cachedData: ', cachedData);
         if (typeof(cachedData) !== 'string') return console.log('ERROR: got boolean or undefined. Expected string or undefined'); 
         //console.log(`updated. data: ${cachedData}, section: ${section}, name: ${name}`);
-        setInputValue(cachedData);
+
+        // case when the data is a string inside of a string
+        if (cachedData.split("'").length === 3) {
+            setInputValue(cachedData.split('"')[1]);
+        } else {
+            setInputValue(cachedData);
+        }
+
     }, [config, section, name]);
 
     return(

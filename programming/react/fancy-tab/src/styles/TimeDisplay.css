@@ -9,6 +9,12 @@
     align-items: center;
 }
 
+/*~~~~~~~~~~~~~~~~~~ helper class when the background transparent is set ~~~~~*/
+.bg-transparent {
+    background-color: rgb(255 255 255 / .05);
+    backdrop-filter: blur(10px);
+}
+
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ TIME ~~~~~*/
 .time_display__time {
     font-size: clamp(1.5rem, var(--fs, 18vmin), 12rem); 
@@ -17,6 +23,7 @@
     color: var(--fc, black);
     font-family: var(--ff, 'Chivo', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif);
     text-align: center;
+    border-radius: 2px;
 }
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ DATE ~~~~~*/

@@ -16,6 +16,7 @@ export interface Style {
     '--ff'?: string,
     '--fc'?: string,
     '--bg'?: string,
+    'description'?: string,
 }
 
 export interface generalConfiguration {

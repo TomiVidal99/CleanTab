@@ -6,6 +6,7 @@ import {CSSProperties, Fragment, ReactElement, useContext, useEffect} from 'reac
 import './../styles/Weather.css';
 import ConfigContext from './ConfigContext';
 import {useWeather} from './../hooks/useWeather';
+import WeatherContext from './WeatherContext';
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  ~~~~~*/
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ COMPONENTS ~~~~~*/
@@ -18,8 +19,8 @@ const tempCaracter = '🌡';
 const humCaracter = '💧 ';
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ FUNCTION ~~~~~*/
 export const Weather = (): ReactElement => {
-    const {config} = useContext(ConfigContext);
-    const [weather] = useWeather(config);
+    const {config, setConfigValue} = useContext(ConfigContext);
+    const weather = useContext(WeatherContext);
 
     return(
         <Fragment>

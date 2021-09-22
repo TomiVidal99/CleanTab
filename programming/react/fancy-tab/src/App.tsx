@@ -10,6 +10,7 @@ import {Configuration} from './components/Configuration';
 import {Background} from './components/Background';
 import {TimeDisplay} from './components/TimeDisplay';
 import {ConfigProvider} from './components/ConfigProvider';
+import {WeatherProvider} from './components/WeatherProvider';
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ TYPES ~~~~~*/
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  ~~~~~*/
@@ -19,8 +20,10 @@ const App = (): ReactElement => {
     return (
         <div className="app">
             <ConfigProvider>
-                <TimeDisplay/>
-                <Weather/>
+                <WeatherProvider>
+                    <TimeDisplay/>
+                    <Weather/>
+                </WeatherProvider>
                 <Configuration /> 
                 <Background/>
             </ConfigProvider>
