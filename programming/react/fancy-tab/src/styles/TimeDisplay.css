@@ -1,9 +1,9 @@
 .time_display {
     position: absolute;
-    width: 80vw;
+    width: 100vw;
     height: 40vh;
     top: 30vh;
-    left: 10vw;
+    left: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -16,14 +16,8 @@
     font-weight: var(--fw, 300);
     color: var(--fc, black);
     font-family: var(--ff, 'Chivo', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif);
+    text-align: center;
 }
-/*displays 'hs' text after the hour: it doesnt look bad but it's looks depends on the date format*/
-/*.time_display__time::after {*/
-    /*content: 'hs';*/
-    /*font-style: italic;*/
-    /*font-size: clamp(1.2125rem, 7vmin, 6rem); */
-    /*color: black;*/
-/*}*/
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ DATE ~~~~~*/
 .time_display__date {

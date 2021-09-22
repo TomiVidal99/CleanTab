@@ -6,10 +6,13 @@
     backdrop-filter: blur(20px);
     padding: 1.2em;
     border-radius: 4px;
-    font-size: var(--fs-p);
-    font-family: var(--ff-p);
-    font-weight: var(--fw-p);
-    font-style: italic;
+}
+.weather > * {
+    color: var(--fc, black);
+    font-size: var(--fs);
+    font-family: var(--ff);
+    font-weight: var(--fw);
+    font-style: var(--fst, italic);
 }
 
 

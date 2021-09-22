@@ -29,7 +29,7 @@ export const CheckSelect = ({label, name, checkbox, description, section, config
                 htmlFor={name as string}
             >
                 {label}
-                {checkbox ? <Check name={name} section={section} config={config} setConfigValue={setConfigValue} /> : null}
+                {checkbox ? <Check name={name+'Checkbox'} section={section} config={config} setConfigValue={setConfigValue} /> : null}
             </label>
             {description ? <div className="input__container_description">{description}</div> : null}
         </div>

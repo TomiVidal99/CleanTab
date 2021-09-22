@@ -41,7 +41,7 @@ export const Select = ({label, section, options, name, checkbox, description, co
         if (typeof(cachedData) !== 'string') return console.log('ERROR: got boolean or undefined. Expected string or undefined'); 
         //console.log(`updated. data: ${cachedData}, section: ${section}, name: ${name}`);
         setInputValue(cachedData);
-    }, [config]);
+    }, [config, section, name]);
 
     return(
         <div className="settings__input_container" >

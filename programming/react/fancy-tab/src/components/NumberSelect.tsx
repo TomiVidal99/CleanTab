@@ -46,12 +46,12 @@ export const NumberSelect = ({label, name, section, config, setConfigValue, desc
     // gets the saves data on window.localStorage
     useEffect(() => {
         const cachedData = config[section][name];
-        console.log( `cachedData: ${cachedData}` );
+        //console.log( `cachedData: ${cachedData}` );
         if (typeof(cachedData) !== 'string') return console.log(`ERROR: expected string. got ${typeof(cachedData)}. NumberSelect.tsx`);
         const reducedData = cachedData.split('vmin');
         if (reducedData.length === 0) return console.log("ERROR: expected string to have 'vmin'. NumberSelect.tsx");
         setInputValue(reducedData[0]);
-    }, [config]);
+    }, [config, section, name]);
 
     return(
         <div className="settings__input_container">

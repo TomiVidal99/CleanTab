@@ -1,34 +1,45 @@
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ MODULES ~~~~~*/
-import {CSSProperties, ReactElement, useContext} from 'react';
+import {CSSProperties, Fragment, ReactElement, useContext, useEffect} from 'react';
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  ~~~~~*/
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ASSETS ~~~~~*/
 import './../styles/Weather.css';
 import ConfigContext from './ConfigContext';
+import {useWeather} from './../hooks/useWeather';
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  ~~~~~*/
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ COMPONENTS ~~~~~*/
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  ~~~~~*/
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ TYPES ~~~~~*/
-//import {Style} from './../types/Config';
-//interface Props {
-    //style: Style
-//}
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  ~~~~~*/
 
+const tempCaracter = '🌡';
+const humCaracter = '💧 ';
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ FUNCTION ~~~~~*/
 export const Weather = (): ReactElement => {
     const {config} = useContext(ConfigContext);
+    const [weather] = useWeather(config);
+
     return(
-        <div style={config.weather as CSSProperties} className="weather">
-            <div className="weather__temperature">
-                🌡 Temp <span className="temperature" id="temperature"></span>
-            </div>
-            <div className="weather__humidity">
-                 💧 Hum<span className="humidity" id="humidity"></span>
-            </div>
-        </div>
+        <Fragment>
+            {config.general.locationCheckbox ? 
+
+                <div style={config.weather as CSSProperties} className="weather">
+                    <div className="weather__temperature">
+                        {tempCaracter} Temp <span className="temperature" id="temperature">
+                            {weather ? weather.main ? weather.main.temp+'°' : null : null}
+                        </span>
+                    </div>
+                    <div className="weather__humidity">
+                        {humCaracter} Hum <span className="humidity" id="humidity">
+                            {weather ? (weather.main ? weather.main.humidity+'%' : null) : null}
+                        </span>
+                    </div>
+                </div>
+
+            : null }
+        </Fragment>
     );
 }
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  ~~~~~*/

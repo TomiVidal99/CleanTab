@@ -24,10 +24,10 @@ export interface generalConfiguration {
     key: string,
     query: string,
     queryCheckbox: boolean,
-    background: string,
     location: string,
     locationCheckbox: boolean,
     weatherDescriptionCheckbox: boolean,
     dateFormat: string,
     dateFormatCheckbox: boolean,
+    units: string
 }

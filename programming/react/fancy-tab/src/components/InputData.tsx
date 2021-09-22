@@ -30,7 +30,7 @@ export const InputData = ({label, name, placeholder, checkbox, section, descript
         const cachedData = config[section][name];
         if (typeof(cachedData) !== 'string') return console.log(`ERROR: expected string. got ${typeof(cachedData)}. InputData.tsx, ln 31`);
         setInputValue(cachedData);
-    }, [config]);
+    }, [config, section, name]);
 
     // updates the local, global states and saves the new data into the localstorage
     const handleChangeInput = (element: ChangeEvent<HTMLInputElement>): void => {
@@ -50,7 +50,8 @@ export const InputData = ({label, name, placeholder, checkbox, section, descript
             <label className="input_container__label" htmlFor={name as string}>
                 {label}
                 <input 
-                    onChange={handleChangeInput} 
+                    onChange={ (e) => {setInputValue(e.target.value)} }
+                    onBlur={handleChangeInput} 
                     placeholder={placeholder}
                     value={inputValue}
                     id={name as string}

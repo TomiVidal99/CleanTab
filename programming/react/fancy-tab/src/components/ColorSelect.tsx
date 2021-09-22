@@ -40,8 +40,9 @@ export const ColorSelect = ({label, name, description, section, config, setConfi
     useEffect(() => {
         const cachedData = config[section][name];
         if (typeof(cachedData) !== 'string') return console.log('ERROR: expected string. got boolean or undefined: ColorSelect.tsx: ln 40')
+        //console.log(`cachedData: ${cachedData}`);
         setInputValue(cachedData);
-    }, [config]);
+    }, [config, section, name]);
 
     return(
         <div className="settings__input_container">

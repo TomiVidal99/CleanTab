@@ -1,7 +1,5 @@
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ MODULES ~~~~~*/
 import {CSSProperties, ReactElement, useContext, useEffect, useState} from 'react';
-import {useConfig} from '../hooks/useConfig';
-import {useWeather} from './../hooks/useWeather';
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  ~~~~~*/
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ASSETS ~~~~~*/
@@ -34,13 +32,13 @@ export const TimeDisplay = (): ReactElement => {
 
             {/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ DATE~~~~~*/}
             <time style={config.date as CSSProperties} className="time_display__date">
-                {time.toLocaleDateString(config.general.locale)}
+                {config.general.dateFormatCheckbox ? time.toLocaleDateString(config.general.locale) : null}
+                {/*time.toLocaleDateString(config.general.dateFormat === 'automatic' ? config.general.locale : config.general.dateFormat)*/}
             </time>
 
             {/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ WEATHER DESCRIPTION ~~~~~*/}
             <p style={config.description as CSSProperties} className="time_display__description">
-                {/*weather ? 'description' : ''*/}
-                weather description
+                {config.general.weatherDescriptionCheckbox ? 'Weather description' : null}
             </p>
         </div>
     );

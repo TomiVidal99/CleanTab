@@ -34,11 +34,11 @@ export const Check = ({name, section, config, setConfigValue}: ComponentProps): 
 
     //updates the value on init and when the config changes
     useEffect(() => {
-        console.log(`Section: ${section}, name: ${name}`);
+        //console.log(`Section: ${section}, name: ${name}`);
         const cachedData = config[section][name];
         if (typeof(cachedData) !== 'boolean') return console.log(`ERROR: expected boolean. got ${typeof(cachedData)}. Check.tsx`);
         setInputValue(cachedData);
-    }, [config]);
+    }, [config, section, name]);
 
     return(
         <input

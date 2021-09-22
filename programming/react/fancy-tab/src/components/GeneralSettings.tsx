@@ -5,6 +5,7 @@ import {Select} from './Select';
 import {Settings} from './Settings';
 import {CheckSelect} from './CheckSelect';
 import ConfigContext from './ConfigContext';
+import {ColorSelect} from './ColorSelect';
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  ~~~~~*/
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ COMPONENTS ~~~~~*/
@@ -15,6 +16,20 @@ import ConfigContext from './ConfigContext';
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ FUNCTION ~~~~~*/
 const section = 'general';
+//TODO: add different date styles
+//const dateFormats: string[] = [
+    //"automatic",
+    //(Intl.DateTimeFormat('en-US', {
+        //year: 'numeric',
+        //month: 'numeric',
+        //day: 'numeric',
+        //hour: 'numeric',
+        //minute: 'numeric',
+        //second: 'numeric',
+        //hour12: false,
+        //timeZone: 'America/Los_Angeles'
+    //}).format(new Date())).toString(),
+//]
 export const GeneralSettings = () :ReactElement => {
     const {config, setConfigValue} = useContext(ConfigContext);
     return(
@@ -61,12 +76,20 @@ export const GeneralSettings = () :ReactElement => {
                 config={config}
                 setConfigValue={setConfigValue}
             />
-            <InputData
+            <ColorSelect
                 key="backgroundColor"
-                label="Background color"
-                name="background"
-                section={section}
-                placeholder="Enter a color, i.e: limegreen, or #ddd"
+                label="Background Color"
+                name="--bg"
+                section="background"
+                config={config}
+                setConfigValue={setConfigValue}
+            />
+            <CheckSelect
+                key="dateFormat"
+                label="Display Date"
+                name="dateFormat"
+                section="general"
+                checkbox={true}
                 config={config}
                 setConfigValue={setConfigValue}
             />
@@ -83,26 +106,11 @@ export const GeneralSettings = () :ReactElement => {
             />
             <CheckSelect
                 label="Weather description"
-                name="weatherDescriptionCheckbox"
+                name="weatherDescription"
                 config={config}
                 setConfigValue={setConfigValue}
                 section={section}
                 checkbox={true}
-            />
-            <Select
-                key="dateFormat"
-                label="Date"
-                section="general"
-                options={[
-                    "automatic",
-                    "dd/mm/yy",
-                    "dd/mm/yyyy",
-                    "dd/mm",
-                ]}
-                name="dateFormat"
-                checkbox={true}
-                config={config}
-                setConfigValue={setConfigValue}
             />
         </Settings>
     );
