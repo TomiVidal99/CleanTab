@@ -47,4 +47,4 @@ Clone this repo and run `npm run start ` or if you want to work with yarn run `y
 - - - -
 
 ## Contributors
-> [TOMAS VIDAL] (https://github.com/TomiVidal99)
+[TOMAS VIDAL] (https://github.com/TomiVidal99)
