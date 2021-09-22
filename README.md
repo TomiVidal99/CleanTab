@@ -27,9 +27,10 @@ Project is: _in progress_.
 Just download it from the chrome web store [_Chrome Web Store_](https://chrome.google.com/webstore/search/CleanTab).  
 
 ## How to modify
-Clone this repo and run `npm run start ` or if you want to work with yarn run `yarn start`
+Clone this repo and run `npm run start` or if you want to work with yarn run `yarn start`
 
 ## TODO
+- [ ] Add metric or imperial select, or make it dynamic from the locale.
 - [ ] Add option of adding a transperant background behind the time display.
 - [ ] Add p5js animations.
 - [ ] Add Three.js animations.
