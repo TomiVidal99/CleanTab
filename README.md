@@ -1,4 +1,4 @@
-###CleanTab
+### CleanTab
 _This is a better version of the FancyTab chrome extension. In this new extension i used typescript and react_
 
 ![CleanTab preview](preview/CleanTabPreview.png?raw=true)
