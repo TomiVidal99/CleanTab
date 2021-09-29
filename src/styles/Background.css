@@ -1,11 +1,15 @@
 .background {
+    --bg: #dedede;
+    --url: url('');
+
     position: absolute;
     top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
     z-index: -1;
-    background: var(--bg, #dedede);
+    background-image: var(--url);
+    background-color: var(--bg, #dedede);
     background-attachment: local;
     background-position: center;
     background-size: cover;

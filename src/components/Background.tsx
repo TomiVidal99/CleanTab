@@ -30,7 +30,7 @@ export const Background = (): ReactElement => {
 
     return(
         <div 
-            style={randomBackground ? ({'backgroundImage': 'url('+randomBackground.photoURL+')'}) : (config.background as CSSProperties)}
+            style={{...(config.background as CSSProperties), ...{'--url': 'url('+randomBackground?.photoURL+')'}}}
             className="background">
             {randomBackground ? (
                 config.general.queryCheckbox ? photographerCard(randomBackground) : null

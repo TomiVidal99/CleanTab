@@ -1,11 +1,10 @@
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ MODULES ~~~~~*/
-import {CSSProperties, Fragment, ReactElement, useContext, useEffect} from 'react';
+import {CSSProperties, Fragment, ReactElement, useContext} from 'react';
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  ~~~~~*/
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ASSETS ~~~~~*/
 import './../styles/Weather.css';
 import ConfigContext from './ConfigContext';
-import {useWeather} from './../hooks/useWeather';
 import WeatherContext from './WeatherContext';
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  ~~~~~*/
 
@@ -19,7 +18,7 @@ const tempCaracter = '🌡';
 const humCaracter = '💧 ';
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ FUNCTION ~~~~~*/
 export const Weather = (): ReactElement => {
-    const {config, setConfigValue} = useContext(ConfigContext);
+    const {config} = useContext(ConfigContext);
     const weather = useContext(WeatherContext);
 
     return(
